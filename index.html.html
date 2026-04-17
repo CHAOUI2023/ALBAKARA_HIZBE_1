@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al-Baqara Hizb 1 Référentiel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9; --color-surface-offset: #f3f0ec;
+      --color-border: #d4d1ca; --color-text: #28251d; --color-text-muted: #68645d; --color-text-inverse: #f9f8f4;
+      --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-accent: #d19900;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.06); --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+      --radius-sm: 0.5rem; --radius-md: 0.8rem; --radius-lg: 1rem; --radius-full: 999px;
+      --font-body: 'Inter', sans-serif; --font-arabic: 'Amiri', serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d; --color-surface-offset: #22211f;
+      --color-border: #393836; --color-text: #e7e1d7; --color-text-muted: #b6afa4; --color-text-inverse: #171614;
+      --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-accent: #e8af34;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2); --shadow-md: 0 8px 24px rgba(0,0,0,0.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: var(--font-body); font-size: var(--text-base); background: var(--color-bg); color: var(--color-text); line-height: 1.65; }
+    a { color: inherit; }
+    .skip-link { position: absolute; left: -9999px; }
+    .skip-link:focus { left: 1rem; top: 1rem; background: var(--color-primary); color: var(--color-text-inverse); padding: .75rem 1rem; border-radius: var(--radius-sm); z-index: 1000; }
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: color-mix(in srgb, var(--color-surface) 90%, transparent); border-bottom: 1px solid var(--color-border); }
+    .topbar-inner { max-width: 1180px; margin: 0 auto; padding: var(--space-4); display: flex; gap: var(--space-4); align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: var(--space-3); font-weight: 800; }
+    .brand svg { width: 34px; height: 34px; color: var(--color-primary); }
+    .theme-toggle { min-width: 44px; min-height: 44px; border: 1px solid var(--color-border); border-radius: var(--radius-full); display: grid; place-items: center; background: var(--color-surface-2); cursor: pointer; }
+    .container { max-width: 1180px; margin: 0 auto; padding: var(--space-8) var(--space-4) var(--space-16); }
+    .hero { display: grid; gap: var(--space-6); padding: var(--space-8); background: linear-gradient(180deg, var(--color-surface-2), var(--color-surface)); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+    .eyebrow { display: inline-flex; align-items: center; gap: .5rem; width: fit-content; padding: .45rem .8rem; border-radius: var(--radius-full); background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface)); color: var(--color-primary); font-size: var(--text-sm); font-weight: 700; }
+    h1 { margin: 0; font-size: var(--text-2xl); line-height: 1.08; }
+    .hero p { margin: 0; max-width: 70ch; color: var(--color-text-muted); }
+    .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+    .toc a { text-decoration: none; padding: var(--space-4); background: var(--color-surface-offset); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-weight: 700; }
+    .toc small { display: block; margin-top: .3rem; color: var(--color-text-muted); font-weight: 500; }
+    main { margin-top: var(--space-10); display: grid; gap: var(--space-8); }
+    .section-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .section-head { padding: var(--space-6); background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)); border-bottom: 1px solid var(--color-border); }
+    .section-head h2 { margin: 0 0 .35rem; font-size: var(--text-xl); }
+    .section-head p { margin: 0; color: var(--color-text-muted); }
+    .section-body { padding: var(--space-6); display: grid; gap: var(--space-8); }
+    .arabic { direction: rtl; text-align: right; font-family: var(--font-arabic); font-size: clamp(1.7rem, 1.2rem + 1.2vw, 2.5rem); line-height: 2; background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); }
+    .translation { padding: var(--space-5); background: var(--color-surface-offset); border-left: 5px solid var(--color-primary); border-radius: var(--radius-md); }
+    .subgrid { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--space-6); }
+    .panel { background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); }
+    .panel h3 { margin-top: 0; margin-bottom: var(--space-4); font-size: var(--text-lg); }
+    .panel h4 { margin: var(--space-4) 0 var(--space-2); font-size: 1rem; color: var(--color-primary); }
+    .panel ul { margin: 0; padding-left: 1.2rem; }
+    .panel li + li { margin-top: .65rem; }
+    table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    th, td { border: 1px solid var(--color-border); padding: .85rem; vertical-align: top; }
+    th { background: var(--color-surface-offset); text-align: left; }
+    .rtl { direction: rtl; text-align: right; font-family: var(--font-arabic); font-size: 1.25rem; }
+    .note { padding: var(--space-4); border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-accent) 11%, var(--color-surface)); border: 1px solid var(--color-border); }
+    .footer { text-align: center; color: var(--color-text-muted); padding: var(--space-8) var(--space-4); }
+    @media (max-width: 900px) { .subgrid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .hero, .section-body, .section-head { padding: var(--space-5); }
+      .container { padding-top: var(--space-5); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#contenu" class="skip-link">Aller au contenu</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <svg viewBox="0 0 64 64" aria-label="Logo du référentiel" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 16h18c10 0 18 8 18 18v14H32c-10 0-18-8-18-18V16Z" stroke="currentColor" stroke-width="4"/>
+          <path d="M24 22v18M32 22v14M40 22v10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div>Al-Baqara Hizb 1</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600;">Référentiel d'étude arabe / français</div>
+        </div>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Basculer le thème">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="hero" aria-labelledby="titre-page">
+      <div class="eyebrow">Référentiel progressif</div>
+      <h1 id="titre-page">Sourate Al-Baqara — Hizb 1 complet<br>du verset 1 au verset 74</h1>
+      <p>Cette page rassemble une structure prête à l'emploi pour l'étude suivie : texte arabe, traduction française, contexte et structure, synthèse des exégèses, lexique et pistes de réflexion personnelle. Le contenu est déjà développé sur les cinq grands blocs du premier hizb.</p>
+      <nav class="toc" aria-label="Sommaire des sections">
+        <a href="#bloc1">Versets 1–5<small>Les pieux et la guidée</small></a>
+        <a href="#bloc2">Versets 6–20<small>Mécréants et hypocrites</small></a>
+        <a href="#bloc3">Versets 21–39<small>Adoration et récit d'Adam</small></a>
+        <a href="#bloc4">Versets 40–66<small>Rappels aux Enfants d'Israël</small></a>
+        <a href="#bloc5">Versets 67–74<small>Le récit de la vache</small></a>
+      </nav>
+    </section>
+
+    <main id="contenu">
+      <section class="section-card" id="bloc1">
+        <div class="section-head">
+          <h2>Bloc 1 — Versets 1 à 5</h2>
+          <p>Les qualités des pieux et la fonction du Coran comme guidée.</p>
+        </div>
+        <div class="section-body">
+          <div class="arabic">الٓمٓ ﴿١﴾ ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ ﴿٢﴾ الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ ﴿٣﴾ وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ ﴿٤﴾ أُولَٰئِكَ عَلَىٰ هُدًى مِنْ رَبِّهِمْ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ ﴿٥﴾</div>
+          <div class="translation"><strong>Traduction de sens :</strong> Alif, Lâm, Mîm. Voilà le Livre au sujet duquel il n'y a aucun doute, un guide pour les pieux ; ceux qui croient à l'invisible, accomplissent la prière, dépensent de ce que Nous leur avons attribué, croient à ce qui t'a été révélé et à ce qui a été révélé avant toi, et ont la certitude de l'au-delà. Ceux-là sont sur une guidée venant de leur Seigneur, et ce sont eux les réussissants.</div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Contexte et structure</h3>
+              <p>Au début de la sourate, le Coran établit trois profils humains face à la Révélation : les croyants, les mécréants et les hypocrites. Ce premier bloc présente le modèle positif et sert de référence pour comparer les deux autres catégories.</p>
+              <ul>
+                <li>Verset 1 : ouverture solennelle par les lettres isolées.</li>
+                <li>Verset 2 : affirmation de l'autorité du Coran comme Livre sans doute.</li>
+                <li>Versets 3–4 : qualités intérieures et extérieures des pieux.</li>
+                <li>Verset 5 : conclusion par la guidée et la réussite.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Lexique essentiel</h3>
+              <table>
+                <tr><th>Mot</th><th>Explication arabe</th><th>Sens français</th></tr>
+                <tr><td class="rtl">رَيْب</td><td class="rtl">شكّ مع قلق واضطراب</td><td>Doute mêlé de trouble.</td></tr>
+                <tr><td class="rtl">الْمُتَّقِينَ</td><td class="rtl">الذين يجعلون وقاية بينهم وبين سخط الله</td><td>Les pieux, ceux qui se protègent du châtiment par l'obéissance.</td></tr>
+                <tr><td class="rtl">يُوقِنُونَ</td><td class="rtl">يعلمون علمًا جازمًا لا يخالطه شك</td><td>Ils ont une certitude ferme.</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Synthèse des exégèses (التفسير)</h3>
+              <h4>الٓمٓ</h4>
+              <p>Les exégètes rapportent plusieurs avis sur les lettres isolées. L'avis prudent est d'affirmer qu'Allah en connaît pleinement le sens, tout en comprenant qu'elles attirent l'attention sur le miracle du Coran, composé de lettres connues des Arabes mais inimitable.</p>
+              <h4>ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ</h4>
+              <p>L'expression exalte le Livre et affirme sa perfection. Le doute n'appartient pas au Coran lui-même ; il provient des cœurs qui refusent ou négligent la vérité.</p>
+              <h4>هُدًى لِّلْمُتَّقِينَ</h4>
+              <p>La guidée du Coran profite particulièrement à celui qui possède un cœur humble, attentif et soucieux d'obéir à Allah. La taqwā n'est donc pas seulement une émotion, mais une disposition qui se traduit en actes.</p>
+              <h4>الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ...</h4>
+              <p>Le passage rassemble la foi du cœur, les actes rituels, le rapport à l'argent, la foi aux révélations précédentes et la certitude de l'au-delà. Le croyant complet est celui dont la croyance transforme la pratique.</p>
+            </div>
+            <div class="panel">
+              <h3>Réflexions personnelles</h3>
+              <ul>
+                <li>Est-ce que je traite le Coran comme un texte à consulter de temps en temps, ou comme un guide central pour orienter mes choix ?</li>
+                <li>Ma prière est-elle simplement exécutée, ou réellement établie avec présence, régularité et respect de ses conditions ?</li>
+                <li>Ma foi dans l'invisible et dans l'au-delà influence-t-elle ma manière de parler, de travailler et de gérer mes biens ?</li>
+              </ul>
+              <div class="note">Ce bloc peut être utilisé comme modèle de référence pour les autres sections : une qualité intérieure doit toujours être reliée à un acte concret.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="bloc2">
+        <div class="section-head">
+          <h2>Bloc 2 — Versets 6 à 20</h2>
+          <p>Le contraste entre les mécréants endurcis et les hypocrites au cœur malade.</p>
+        </div>
+        <div class="section-body">
+          <div class="arabic">إِنَّ الَّذِينَ كَفَرُوا سَوَاءٌ عَلَيْهِمْ أَأَنْذَرْتَهُمْ أَمْ لَمْ تُنْذِرْهُمْ لَا يُؤْمِنُونَ ﴿٦﴾ خَتَمَ اللَّهُ عَلَىٰ قُلُوبِهِمْ وَعَلَىٰ سَمْعِهِمْ وَعَلَىٰ أَبْصَارِهِمْ غِشَاوَةٌ وَلَهُمْ عَذَابٌ عَظِيمٌ ﴿٧﴾ وَمِنَ النَّاسِ مَنْ يَقُولُ آمَنَّا بِاللَّهِ وَبِالْيَوْمِ الْآخِرِ وَمَا هُمْ بِمُؤْمِنِينَ ﴿٨﴾ ... إلى الآية ٢٠</div>
+          <div class="translation"><strong>Traduction de sens :</strong> Les versets 6–7 décrivent ceux dont le rejet est devenu si profond que l'avertissement n'a plus d'effet sur eux. Les versets 8–20 décrivent les hypocrites, qui affichent la foi mais cachent le doute, la tromperie et l'instabilité intérieure.</div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Contexte et structure</h3>
+              <p>Après le portrait des croyants, le texte établit deux formes de refus : le refus frontal et l'hypocrisie. Le développement le plus long concerne les hypocrites, ce qui montre le danger particulier de cette double posture.</p>
+              <ul>
+                <li>Versets 6–7 : les mécréants endurcis.</li>
+                <li>Versets 8–10 : fausse déclaration de foi et maladie du cœur.</li>
+                <li>Versets 11–16 : prétention à la réforme et échange de la guidée contre l'égarement.</li>
+                <li>Versets 17–20 : deux paraboles, le feu et l'orage.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Lexique essentiel</h3>
+              <table>
+                <tr><th>Mot</th><th>Explication arabe</th><th>Sens français</th></tr>
+                <tr><td class="rtl">خَتَمَ</td><td class="rtl">طبع وأغلق</td><td>Sceller, fermer.</td></tr>
+                <tr><td class="rtl">يُخَادِعُونَ</td><td class="rtl">يظهرون غير ما يبطنون</td><td>Tromper en montrant autre chose que l'intérieur.</td></tr>
+                <tr><td class="rtl">مَرَضٌ</td><td class="rtl">فساد في القلب من شك ونفاق</td><td>Maladie intérieure faite de doute et d'hypocrisie.</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Synthèse des exégèses (التفسير)</h3>
+              <h4>Versets 6–7</h4>
+              <p>Les exégètes expliquent qu'il ne s'agit pas de toute personne mécréante, mais d'une catégorie qui a persisté dans le refus jusqu'à l'endurcissement. Le sceau posé sur le cœur n'est pas arbitraire ; il vient comme conséquence de leur obstination et de leur rejet répété des signes.</p>
+              <h4>Versets 8–10</h4>
+              <p>Les hypocrites prétendent appartenir à la foi alors qu'ils s'en excluent intérieurement. En voulant tromper Allah et les croyants, ils ne trompent qu'eux-mêmes. La maladie du cœur désigne ici le doute, l'insincérité, la recherche d'intérêt et la corruption morale.</p>
+              <h4>Versets 11–16</h4>
+              <p>Ils se présentent comme réformateurs alors qu'ils propagent le désordre. Ils méprisent les croyants sincères et s'imaginent plus lucides, alors qu'en réalité ils effectuent un mauvais échange : ils ont vendu la guidée pour acheter l'égarement.</p>
+              <h4>Versets 17–20</h4>
+              <p>La parabole du feu montre une lumière momentanée qu'ils ne gardent pas. Celle de l'orage montre une foi opportuniste : ils avancent lorsqu'une lumière les avantage, puis s'arrêtent dès que la difficulté revient. Les deux images décrivent une absence de stabilité intérieure.</p>
+            </div>
+            <div class="panel">
+              <h3>Réflexions personnelles</h3>
+              <ul>
+                <li>Mon apparence religieuse correspond-elle réellement à ce que je suis dans l'intimité ?</li>
+                <li>Quand on me conseille ou qu'on me corrige, ai-je tendance à me justifier en me présentant comme quelqu'un de raisonnable ou de réformateur ?</li>
+                <li>Ma pratique dépend-elle de mon confort et du regard des autres, ou est-elle stable même quand l'effort devient difficile ?</li>
+              </ul>
+              <div class="note">Ce bloc invite à surveiller le cœur. Le danger n'est pas seulement l'erreur visible, mais la fracture entre le discours et la réalité intérieure.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="bloc3">
+        <div class="section-head">
+          <h2>Bloc 3 — Versets 21 à 39</h2>
+          <p>Appel universel à l'adoration, défi du Coran et récit fondateur d'Adam.</p>
+        </div>
+        <div class="section-body">
+          <div class="arabic">يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمُ الَّذِي خَلَقَكُمْ وَالَّذِينَ مِنْ قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ ﴿٢١﴾ ... إلى الآية ٣٩</div>
+          <div class="translation"><strong>Traduction de sens :</strong> Le passage appelle toute l'humanité à adorer Allah pour Ses bienfaits et Sa création, lance un défi à ceux qui doutent du Coran, annonce le Paradis aux croyants, puis raconte la création d'Adam, le refus d'Iblis, la faute puis le repentir d'Adam et la promesse de la guidée sur terre.</div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Contexte et structure</h3>
+              <p>Le discours quitte la simple description des catégories humaines pour adresser directement les hommes. Il relie l'adoration à la création, puis présente deux preuves majeures : le miracle du Coran et le récit d'Adam.</p>
+              <ul>
+                <li>Versets 21–22 : appel à l'adoration fondé sur les bienfaits divins.</li>
+                <li>Versets 23–25 : défi de produire une sourate semblable et promesse du Paradis.</li>
+                <li>Versets 26–29 : pédagogie des paraboles et rappel de la création.</li>
+                <li>Versets 30–39 : récit d'Adam, prosternation des anges, refus d'Iblis, descente sur terre et promesse de guidée.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Lexique essentiel</h3>
+              <table>
+                <tr><th>Mot</th><th>Explication arabe</th><th>Sens français</th></tr>
+                <tr><td class="rtl">اعْبُدُوا</td><td class="rtl">أفردوا الله بالطاعة والمحبة والذل</td><td>Adorez Allah seul avec amour, soumission et obéissance.</td></tr>
+                <tr><td class="rtl">خَلِيفَة</td><td class="rtl">من يقوم في الأرض بعمارتها وفق أمر الله</td><td>Vicaire, être humain chargé d'habiter la terre selon l'ordre d'Allah.</td></tr>
+                <tr><td class="rtl">فَتَلَقَّى</td><td class="rtl">أخذ وقبل</td><td>Recevoir avec acceptation.</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Synthèse des exégèses (التفسير)</h3>
+              <h4>Appel à l'adoration</h4>
+              <p>Le Coran fonde l'adoration sur la création, la subsistance, la pluie, la terre et le ciel. Le tawḥīd n'est pas présenté comme une idée abstraite, mais comme la réponse naturelle à la reconnaissance des bienfaits d'Allah.</p>
+              <h4>Défi du Coran</h4>
+              <p>Le défi de produire une seule sourate semblable demeure une preuve de l'origine divine du Coran. Ceux qui refusent malgré cette preuve sont avertis du feu, tandis que les croyants reçoivent la promesse des jardins et de la pureté parfaite.</p>
+              <h4>Paraboles et sagesse divine</h4>
+              <p>Allah enseigne par des exemples, petits ou grands. Les croyants y voient une vérité, tandis que ceux qui refusent y cherchent un prétexte pour rejeter encore davantage. La même parole devient donc guidée pour l'un et épreuve pour l'autre.</p>
+              <h4>Récit d'Adam</h4>
+              <p>La création d'Adam manifeste sa dignité par la science des noms. Iblis chute par orgueil. Adam tombe par faiblesse, mais se relève par repentir. Le contraste entre les deux figures montre que le péché n'anéantit pas l'homme s'il se tourne sincèrement vers Allah.</p>
+            </div>
+            <div class="panel">
+              <h3>Réflexions personnelles</h3>
+              <ul>
+                <li>Est-ce que j'observe les bienfaits d'Allah comme des signes qui doivent me conduire vers plus d'adoration ?</li>
+                <li>Quand je tombe dans une faute, est-ce que je choisis l'orgueil et la justification, ou l'aveu et le repentir sincère ?</li>
+                <li>Est-ce que j'accueille les paraboles et les rappels comme des occasions de comprendre davantage, ou comme des passages secondaires que je lis rapidement ?</li>
+              </ul>
+              <div class="note">Ce bloc est très utile pour travailler la pédagogie du récit : il montre comment le Coran instruit par l'ordre, la promesse, la menace, l'exemple et le récit historique.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="bloc4">
+        <div class="section-head">
+          <h2>Bloc 4 — Versets 40 à 66</h2>
+          <p>Rappels adressés aux Enfants d'Israël : alliance, bienfaits, miracles et manquements.</p>
+        </div>
+        <div class="section-body">
+          <div class="arabic">يَا بَنِي إِسْرَائِيلَ اذْكُرُوا نِعْمَتِيَ الَّتِي أَنْعَمْتُ عَلَيْكُمْ وَأَوْفُوا بِعَهْدِي أُوفِ بِعَهْدِكُمْ وَإِيَّايَ فَارْهَبُونِ ﴿٤٠﴾ ... إلى الآية ٦٦</div>
+          <div class="translation"><strong>Traduction de sens :</strong> Allah rappelle aux Enfants d'Israël Ses bienfaits, leur alliance, le sauvetage de Pharaon, la séparation de la mer, le pardon après le veau d'or, la manne, les cailles et l'eau jaillie du rocher, tout en exposant leurs désobéissances, leurs contournements et leur ingratitude.</div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Contexte et structure</h3>
+              <p>Cette séquence longue sert de leçon historique et morale. Elle rappelle que les miracles n'apportent pas toujours la réforme si le cœur reste dur et si l'alliance divine n'est pas honorée.</p>
+              <ul>
+                <li>Versets 40–46 : rappel de l'alliance, crainte d'Allah, prière et patience.</li>
+                <li>Versets 47–53 : délivrance de Pharaon, mer fendue, Torah et épisode du veau.</li>
+                <li>Versets 54–60 : repentir, demande de voir Allah, manne, cailles et eau du rocher.</li>
+                <li>Versets 61–66 : plainte, humiliation et transgression du Sabbat.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Lexique essentiel</h3>
+              <table>
+                <tr><th>Mot</th><th>Explication arabe</th><th>Sens français</th></tr>
+                <tr><td class="rtl">بِعَهْدِي</td><td class="rtl">بأمري ووصيتي وما التزمتم به</td><td>Mon engagement, Mon alliance.</td></tr>
+                <tr><td class="rtl">فَرَقْنَا</td><td class="rtl">شقَقْنا وفصلنا</td><td>Nous avons séparé, fendu.</td></tr>
+                <tr><td class="rtl">الْعِجْلَ</td><td class="rtl">ولد البقرة الذي عبدوه من دون الله</td><td>Le veau adoré à tort en dehors d'Allah.</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Synthèse des exégèses (التفسير)</h3>
+              <h4>Alliance et vérité</h4>
+              <p>Allah leur ordonne de se souvenir de Ses bienfaits, de respecter l'alliance et de ne pas cacher la vérité. La science religieuse n'a de valeur que si elle conduit à l'humilité, à l'obéissance et à la transmission fidèle.</p>
+              <h4>Miracles et désobéissance</h4>
+              <p>Malgré la mer fendue, la délivrance de Pharaon et la révélation à Moussa, certains retournent vers l'idolâtrie avec le veau d'or. Les exégètes insistent ici sur le fait que les signes extérieurs ne suffisent pas sans réforme intérieure.</p>
+              <h4>Bienfaits reçus, gratitude absente</h4>
+              <p>La manne, les cailles et l'eau du rocher sont des dons extraordinaires. Pourtant, l'insatisfaction et les réclamations reviennent. Le texte dévoile ainsi la maladie de l'ingratitude et l'incapacité à reconnaître la valeur d'un bienfait déjà présent.</p>
+              <h4>Ruse face à la loi</h4>
+              <p>L'épisode du Sabbat montre la gravité du contournement : certains ne brisent pas ouvertement l'ordre, mais cherchent des ruses pour en vider le sens. Le rappel est puissant pour toute communauté qui transforme la religion en jeu de formes.</p>
+            </div>
+            <div class="panel">
+              <h3>Réflexions personnelles</h3>
+              <ul>
+                <li>Est-ce que je me souviens vraiment des bienfaits reçus, ou est-ce que je me focalise surtout sur ce qui me manque ?</li>
+                <li>Quand je connais une vérité religieuse claire, est-ce que je la transmets et l'applique, ou est-ce que je la tais par intérêt ?</li>
+                <li>Ai-je parfois la tentation de contourner les principes au lieu de m'y conformer honnêtement ?</li>
+              </ul>
+              <div class="note">Ce bloc aide à travailler l'éthique de l'engagement : recevoir un bienfait ou une connaissance implique responsabilité, fidélité et gratitude.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="bloc5">
+        <div class="section-head">
+          <h2>Bloc 5 — Versets 67 à 74</h2>
+          <p>Le récit de la vache, l'excès de questions et l'endurcissement des cœurs.</p>
+        </div>
+        <div class="section-body">
+          <div class="arabic">وَإِذْ قَالَ مُوسَىٰ لِقَوْمِهِ إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تَذْبَحُوا بَقَرَةً ۖ قَالُوا أَتَتَّخِذُنَا هُزُوًا ۖ ... إلى الآية ٧٤</div>
+          <div class="translation"><strong>Traduction de sens :</strong> Allah ordonne aux Enfants d'Israël de sacrifier une vache. Au lieu d'obéir simplement, ils multiplient les questions jusqu'à rendre la chose difficile. Ensuite, un meurtre est élucidé par un signe divin. Malgré cela, les cœurs de certains s'endurcissent au point d'être comparés à des pierres, voire plus durs encore.</div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Contexte et structure</h3>
+              <p>Ce passage donne son nom à la sourate. Il montre comment l'esprit de résistance et la complication inutile peuvent transformer un ordre simple en charge lourde, puis comment les signes manifestes ne produisent pas toujours l'adoucissement des cœurs.</p>
+              <ul>
+                <li>Versets 67–71 : ordre de sacrifier une vache et série de questions.</li>
+                <li>Versets 72–73 : affaire d'un meurtre et dévoilement du coupable.</li>
+                <li>Verset 74 : conclusion sur la dureté du cœur.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Lexique essentiel</h3>
+              <table>
+                <tr><th>Mot</th><th>Explication arabe</th><th>Sens français</th></tr>
+                <tr><td class="rtl">بَقَرَة</td><td class="rtl">أنثى البقر</td><td>Une vache.</td></tr>
+                <tr><td class="rtl">فَارِض</td><td class="rtl">مسنّة كبيرة</td><td>Vieille, âgée.</td></tr>
+                <tr><td class="rtl">قَسَتْ</td><td class="rtl">اشتدّت وصلبت</td><td>S'est endurcie, durcie.</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="subgrid">
+            <div class="panel">
+              <h3>Synthèse des exégèses (التفسير)</h3>
+              <h4>Ordre simple, réponse compliquée</h4>
+              <p>Les exégètes soulignent que l'ordre initial était simple : sacrifier une vache. Les questions répétées ne relevaient pas d'une recherche sincère de compréhension, mais d'une résistance à l'obéissance. C'est pourquoi chaque précision restreint davantage l'objet demandé.</p>
+              <h4>Manifestation de la vérité</h4>
+              <p>Le miracle lié au mort frappé par une partie de la vache manifeste la puissance d'Allah à faire revivre et à faire apparaître ce qui est caché. Il s'agit aussi d'une preuve en faveur de la résurrection et d'un rappel que l'injustice ne demeure pas éternellement dissimulée.</p>
+              <h4>Dureté du cœur</h4>
+              <p>La comparaison avec la pierre est saisissante : certaines pierres laissent jaillir des sources, se fendent ou tombent par crainte d'Allah, alors que certains cœurs restent fermés malgré les rappels. Le texte ne dénonce donc pas seulement une erreur, mais une insensibilité spirituelle profonde.</p>
+            </div>
+            <div class="panel">
+              <h3>Réflexions personnelles</h3>
+              <ul>
+                <li>Lorsque l'ordre d'Allah est clair, est-ce que je cherche à obéir simplement ou à gagner du temps par des questions qui compliquent l'évidence ?</li>
+                <li>Mon cœur réagit-il encore au Coran, aux rappels et aux signes, ou est-il devenu insensible ?</li>
+                <li>Est-ce que je garde confiance dans le fait qu'Allah peut dévoiler la vérité et faire apparaître l'injustice cachée ?</li>
+              </ul>
+              <div class="note">Ce bloc est particulièrement utile pour travailler le thème de l'obéissance simple : plus le cœur résiste, plus le chemin devient lourd.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    Référentiel d'étude du premier hizb de Sourate Al-Baqara — version enrichie, arabe / français.
+  </footer>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      btn.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+      });
+    })();
+  </script>
+</body>
+</html>
