@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>programme.html</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f4ee;--surface:#fffdf9;--surface-2:#f3ece2;--text:#211d18;--muted:#6f665b;--primary:#0d6d67;--primary-2:#114e4a;--gold:#b9893b;--gold-soft:#fbf1df;--line:#ddd1c1;--line-soft:#ebe2d6;--shadow:0 20px 44px rgba(22,20,18,.07);--shadow-soft:0 10px 24px rgba(22,20,18,.05);--radius:22px;--max:1180px}
+[data-theme='dark']{--bg:#151311;--surface:#1e1b18;--surface-2:#28231f;--text:#f4efe6;--muted:#b8aea2;--primary:#6bb6af;--primary-2:#91d4ce;--gold:#e4b55e;--gold-soft:#342a1b;--line:#3b342d;--shadow:0 18px 40px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.75}a{text-decoration:none;color:inherit}.container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 0}.brand strong{display:block;font-size:1.04rem}.brand span{font-size:.94rem;color:var(--muted)}.nav-links{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.nav-links a{color:var(--muted);font-weight:600}.nav-links a.active{color:var(--primary)}
+.btn,.theme-toggle{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);display:inline-flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer}.btn-primary{background:var(--primary);color:#fff;border-color:transparent}.btn-primary:hover{background:var(--primary-2)}
+.hero{padding:46px 0 28px;background:radial-gradient(circle at top right,rgba(13,109,103,.11),transparent 28%),radial-gradient(circle at left center,rgba(185,137,59,.09),transparent 24%),linear-gradient(180deg,rgba(255,255,255,.35),transparent)}
+.hero-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.card,.hero-card,.reflection-box,.mini-card,.section-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero-card::before,.section-card::before,.reflection-box::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--primary),var(--gold));opacity:.85}.hero-card,.section-card{padding:28px}.mini-card{padding:18px;box-shadow:var(--shadow-soft);transition:transform .2s ease, box-shadow .2s ease}.mini-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.pill{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:.92rem;color:var(--muted)}.hero h1{font-size:clamp(1.9rem,3.8vw,3.6rem);line-height:1.08;margin:14px 0}.lead{font-size:.98rem;color:var(--muted);max-width:62ch}.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.summary-grid strong{display:block;margin-bottom:8px}
+.arabic{font-family:Amiri,serif;direction:rtl;text-align:right;font-size:clamp(1.5rem,2.5vw,2.2rem);line-height:1.9;background:#fbfaf6;padding:16px;border-radius:16px;border:1px solid #e9dfd0;margin-top:16px}[data-theme='dark'] .arabic{background:#12110f;border-color:#312a24}
+.section{padding:24px 0}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:16px}.section-head h2{position:relative;padding-left:16px}.section-head h2::before{content:'';position:absolute;left:0;top:.25em;width:6px;height:1.2em;border-radius:999px;background:linear-gradient(180deg,var(--primary),var(--gold))}.section-head p{max-width:70ch;color:var(--muted);margin:0}.study-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-soft)}.study-table th,.study-table td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}.study-table th{background:linear-gradient(180deg,var(--surface-2),#efe6d9)}
+.block{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;align-items:start;margin-bottom:18px}.section-card h2{margin:0 0 12px;font-size:clamp(1.45rem,2vw,1.9rem)}.section-card h3{margin:18px 0 8px}.muted{color:var(--muted)}.list{padding-left:20px;margin:0}.list li{margin-bottom:8px}.lexique{width:100%;border-collapse:collapse;margin-top:10px}.lexique th,.lexique td{padding:10px;border:1px solid var(--line);text-align:left;vertical-align:top}.lexique th{background:var(--surface-2)}.lexique td:first-child{min-width:170px}.gloss-general{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}.gloss-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow-soft)}.gloss-card h3{margin:0 0 10px}.gloss-card ul{padding-left:18px;margin:0}.gloss-card li{margin-bottom:8px}.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.insight-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow-soft);transition:transform .2s ease, box-shadow .2s ease}.insight-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.insight-card h3{margin-top:0;font-size:1.1rem}.insight-card p{margin:0;color:var(--muted)}@media (max-width:980px){.hero-wrap,.block,.summary-grid,.insight-grid{grid-template-columns:1fr}.reflection-box{position:static}}
+.reflection-box{padding:22px;background:linear-gradient(180deg,var(--gold-soft),var(--surface));position:sticky;top:88px;box-shadow:var(--shadow-soft)}.reflection-box h3{margin-top:0}.reflection-box ul{padding-left:18px;margin:0}.reflection-box li{margin-bottom:12px}.tag{display:inline-flex;background:rgba(185,137,59,.12);color:#8b6321;border:1px solid rgba(185,137,59,.28);padding:6px 10px;border-radius:999px;font-size:.86rem;font-weight:700;margin-bottom:12px}[data-theme='dark'] .tag{color:#f0ca84;background:rgba(228,181,94,.10);border-color:rgba(228,181,94,.25)}
+.callout{padding:16px 18px;border-radius:18px;background:color-mix(in srgb,var(--primary) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--primary) 24%,var(--line));margin-top:18px;box-shadow:var(--shadow-soft)}.glossary-note{margin-top:14px;padding:14px 16px;border-radius:16px;background:var(--surface-2);border:1px dashed var(--line);font-size:.95rem}.lexique caption{caption-side:top;text-align:left;font-weight:800;padding:0 0 8px;color:var(--text)}.term-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:color-mix(in srgb,var(--gold) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--gold) 28%,var(--line));font-size:.88rem;font-weight:700;margin:4px 6px 0 0}.hero-terms{margin-top:14px}.footer{padding:28px 0 46px;border-top:1px solid var(--line);color:var(--muted)}
+@media (max-width:980px){.hero-wrap,.block,.summary-grid{grid-template-columns:1fr}.reflection-box{position:static}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <div class="brand"><strong>WorkQur'an</strong><span>Étude guidée du Hizbe 1</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a class="active" href="programme.html">Programme</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+      <button class="theme-toggle" data-theme-toggle>Mode sombre</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="hero-card">
+        <span class="pill">Programme détaillé</span>
+        <h1>Étudier le Hizbe 1 avec une progression claire, un sens vivant et une réflexion personnelle guidée.</h1>
+        <p class="lead">Cette page reprend le programme d’étude en le réorganisant pour rendre la lecture plus fluide. Les idées majeures, le lexique et surtout les questions de réflexion personnelle sont davantage mises en évidence.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="index.html">Retour à l’accueil</a>
+          <a class="btn" href="#parcours">Voir le parcours</a>
+        </div>
+        <div class="callout"><strong>Important.</strong> La réflexion personnelle ne remplace pas l’étude savante ; elle sert à relier compréhension, pratique et transformation intérieure.</div><div class="glossary-note"><strong>Aide à la lecture.</strong> Chaque bloc garde sa structure initiale, mais les termes arabes sont davantage expliqués. L’objectif est de faciliter la compréhension sans appauvrir le contenu.</div><div class="hero-terms"><span class="term-chip">هُدًى — hudā — guidée</span><span class="term-chip">رَيْب — rayb — doute troublant</span><span class="term-chip">يُوقِنُونَ — yūqinūna — avoir une certitude ferme</span></div>
+        <div class="callout"><strong>Ressource audio conseillée.</strong> L’album <em>Tafsir Al Quran Hizb, Vol. 1 (Quran)</em> d’El Mekki Nassiri, disponible sur Deezer, est présenté avec 4 pistes et une date de sortie indiquée au 11/08/2014. Cela peut servir de support d’écoute complémentaire pendant l’étude du programme. <a href="https://www.deezer.com/en/album/8581164" target="_blank" rel="noopener noreferrer">Ouvrir la source</a>.</div>
+
+      </div>
+      <aside class="hero-card">
+        <h2>Repères rapides</h2>
+        <div class="summary-grid">
+          <div class="mini-card"><strong>5 blocs</strong><span class="muted">De la guidée aux cœurs endurcis.</span></div>
+          <div class="mini-card"><strong>4 axes</strong><span class="muted">Contexte, lexique, synthèse, réflexion.</span></div>
+          <div class="mini-card"><strong>1 objectif</strong><span class="muted">Passer de la lecture à l’appropriation.</span></div>
+        </div>
+        <div class="arabic">ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="parcours">
+    <div class="section-head">
+      <div>
+        <h2>Parcours hebdomadaire</h2>
+        <p>Une vue d’ensemble pour garder le rythme général avant d’entrer dans les blocs détaillés.</p>
+      </div>
+    </div>
+    <table class="study-table">
+      <thead>
+        <tr><th>Semaine</th><th>Bloc</th><th>Objectif</th><th>Travail demandé</th><th>Conclusion attendue</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Versets 1–5</td><td>Comprendre la guidée.</td><td>Lecture, écoute, notes, synthèse.</td><td>Définir la guidée dans sa vie.</td></tr>
+        <tr><td>2</td><td>Versets 6–20</td><td>Identifier les maladies du cœur.</td><td>Comparer refus et hypocrisie.</td><td>Repérer les incohérences à corriger.</td></tr>
+        <tr><td>3</td><td>Versets 21–39</td><td>Responsabilité humaine.</td><td>Étudier Adam, la faute et le repentir.</td><td>Relire sa mission personnelle.</td></tr>
+        <tr><td>4</td><td>Versets 40–66</td><td>Travailler la gratitude.</td><td>Relever les bienfaits et les oublis.</td><td>Renforcer la reconnaissance.</td></tr>
+        <tr><td>5</td><td>Versets 67–74</td><td>Éviter la complication.</td><td>Étudier le récit de la vache.</td><td>Appliquer une obéissance simple.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>Glossaire général arabe–français</h2>
+        <p>Ce glossaire regroupe les termes les plus utiles rencontrés dans l’étude afin d’aider le lecteur à relier le mot arabe, sa translittération et son sens en français simple.</p>
+      </div>
+    </div>
+    <div class="gloss-general">
+      <article class="gloss-card">
+        <h3>Foi et orientation</h3>
+        <ul>
+          <li><strong>هُدًى — hudā</strong> : guidée, orientation juste.</li>
+          <li><strong>الْكِتَاب — al-kitāb</strong> : le Livre, ici le Coran.</li>
+          <li><strong>رَيْب — rayb</strong> : doute troublant, incertitude agitée.</li>
+          <li><strong>الْمُتَّقِينَ — al-muttaqīn</strong> : les pieux, ceux qui cherchent à éviter ce qui déplaît à Allah.</li>
+          <li><strong>الْغَيْب — al-ghayb</strong> : l’invisible, ce qui échappe aux sens directs.</li>
+          <li><strong>الْآخِرَة — al-ākhira</strong> : l’au-delà, la vie future.</li>
+        </ul>
+      </article>
+      <article class="gloss-card">
+        <h3>Pratique et comportement</h3>
+        <ul>
+          <li><strong>يُقِيمُونَ الصَّلَاة — yuqīmūna aṣ-ṣalāh</strong> : accomplir la prière de manière stable et soignée.</li>
+          <li><strong>يُنفِقُونَ — yunfiqūn</strong> : dépenser, donner de ses biens.</li>
+          <li><strong>اعْبُدُوا — uʿbudū</strong> : adorez, obéissez avec amour et humilité.</li>
+          <li><strong>عَهْد — ʿahd</strong> : alliance, engagement solennel.</li>
+          <li><strong>تَوْبَة — tawba</strong> : repentir, retour sincère vers Allah.</li>
+          <li><strong>شُكْر — shukr</strong> : gratitude, reconnaissance du bienfait.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="block">
+      <article class="section-card">
+        <span class="pill">Bloc 1 — Versets 1 à 5</span>
+        <h2>Les qualités des pieux et la fonction du Coran comme guidée</h2>
+        <p class="muted"><strong>Traduction de sens :</strong> Voilà le Livre au sujet duquel il n’y a aucun doute, un guide pour les pieux ; ceux qui croient à l’invisible, accomplissent la prière, dépensent de ce que Nous leur avons attribué, croient à la révélation et ont la certitude de l’au-delà.</p>
+        <h3>Contexte et structure</h3>
+        <ul class="list"><li>Le début de la sourate pose trois profils humains face à la Révélation.</li><li>Ce premier bloc présente le modèle positif qui servira de repère pour la suite.</li><li>La guidée est liée à des dispositions intérieures et à des actes visibles.</li></ul>
+        <h3>Lexique essentiel</h3>
+        <table class="lexique"><caption>Lexique enrichi pour mieux comprendre les mots arabes</caption><tr><th>Mot</th><th>Explication</th><th>Sens</th></tr><tr><td><strong>ذَٰلِكَ الْكِتَاب</strong><br><span class="muted">dhālika al-kitāb</span></td><td>هذا الكتاب العظيم</td><td>Ce Livre-là ; formulation solennelle qui donne de la grandeur et de la dignité au Coran.</td></tr><tr><td><strong>رَيْب</strong><br><span class="muted">rayb</span></td><td>شكّ مع قلق واضطراب</td><td>Doute mêlé de trouble ; pas un simple questionnement, mais une hésitation qui agite le cœur.</td></tr><tr><td><strong>هُدًى</strong><br><span class="muted">hudā</span></td><td>دلالة وإرشاد إلى الطريق المستقيم</td><td>Guidée ; orientation claire qui mène vers ce qui est juste.</td></tr><tr><td><strong>الْمُتَّقِينَ</strong><br><span class="muted">al-muttaqīn</span></td><td>الذين يجعلون وقاية بينهم وبين سخط الله</td><td>Les pieux ; ceux qui cherchent à se protéger de ce qui déplaît à Allah par la foi et l’obéissance.</td></tr><tr><td><strong>الْغَيْب</strong><br><span class="muted">al-ghayb</span></td><td>ما غاب عن الحواس</td><td>L’invisible ; tout ce qui n’est pas directement perçu mais que la révélation nous apprend.</td></tr><tr><td><strong>يُقِيمُونَ</strong><br><span class="muted">yuqīmūn</span></td><td>يديمون ويثبتون على وجه مستقيم</td><td>Ils établissent ; accomplir avec régularité, soin et stabilité.</td></tr><tr><td><strong>الصَّلَاة</strong><br><span class="muted">aṣ-ṣalāh</span></td><td>العبادة المعروفة ذات الأقوال والأفعال</td><td>La prière rituelle musulmane.</td></tr><tr><td><strong>يُنفِقُونَ</strong><br><span class="muted">yunfiqūn</span></td><td>يبذلون من المال</td><td>Ils dépensent ; donnent de ce qu’ils possèdent pour le bien.</td></tr><tr><td><strong>يُوقِنُونَ</strong><br><span class="muted">yūqinūn</span></td><td>يعلمون علمًا جازمًا لا يخالطه شك</td><td>Ils ont une certitude ferme ; leur foi n’est pas flottante ni hésitante.</td></tr></table>
+        <h3>Synthèse</h3>
+        <p>La guidée du Coran profite particulièrement à celui qui possède un cœur humble, attentif et soucieux d’obéir. La foi n’est pas seulement une affirmation intérieure : elle structure la prière, le rapport à l’argent et la manière de vivre.</p>
+      </article>
+      <aside class="reflection-box">
+        <div class="tag">Réflexion personnelle</div>
+        <h3>À méditer</h3>
+        <ul>
+          <li>Est-ce que je traite le Coran comme un guide central pour orienter mes choix ?</li>
+          <li>Ma prière est-elle simplement exécutée, ou réellement établie avec présence ?</li>
+          <li>Ma foi influence-t-elle ma manière de parler, de travailler et de gérer mes biens ?</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="block">
+      <article class="section-card">
+        <span class="pill">Bloc 2 — Versets 6 à 20</span>
+        <h2>Le contraste entre les mécréants endurcis et les hypocrites</h2>
+        <p class="muted"><strong>Traduction de sens :</strong> Les versets 6–7 décrivent ceux dont le rejet est devenu si profond que l’avertissement n’a plus d’effet sur eux. Les versets 8–20 décrivent les hypocrites, qui affichent la foi mais cachent le doute et l’instabilité intérieure.</p>
+        <h3>Contexte et structure</h3>
+        <ul class="list"><li>Après le portrait des croyants, la sourate présente deux formes de refus.</li><li>L’hypocrisie est davantage développée, ce qui montre sa gravité.</li><li>Les paraboles du feu et de l’orage décrivent une foi sans stabilité.</li></ul>
+        <h3>Lexique essentiel</h3>
+        <table class="lexique"><caption>Lexique enrichi pour mieux comprendre les mots arabes</caption><tr><th>Mot</th><th>Explication</th><th>Sens</th></tr><tr><td><strong>خَتَمَ</strong><br><span class="muted">khatama</span></td><td>طبع وأغلق</td><td>Sceller, fermer ; image d’un cœur devenu inaccessible au rappel à force de refus.</td></tr><tr><td><strong>قُلُوبِهِمْ</strong><br><span class="muted">qulūbihim</span></td><td>جمع قلب</td><td>Leurs cœurs ; lieu intérieur de la foi, de l’intention et de la sensibilité spirituelle.</td></tr><tr><td><strong>سَمْعِهِمْ</strong><br><span class="muted">samʿihim</span></td><td>السمع والإدراك بالأذن</td><td>Leur ouïe ; faculté d’entendre et de recevoir le rappel.</td></tr><tr><td><strong>أَبْصَارِهِمْ</strong><br><span class="muted">abṣārihim</span></td><td>الأعين وما يبصر به الإنسان</td><td>Leurs regards ; capacité à voir les signes et les preuves.</td></tr><tr><td><strong>يُخَادِعُونَ</strong><br><span class="muted">yukhādiʿūna</span></td><td>يظهرون غير ما يبطنون</td><td>Tromper en montrant autre chose que l’intérieur ; afficher la foi sans vérité intérieure.</td></tr><tr><td><strong>مَرَضٌ</strong><br><span class="muted">maraḍ</span></td><td>فساد في القلب من شك ونفاق</td><td>Maladie du cœur ; trouble intérieur fait de doute, d’hypocrisie ou de corruption morale.</td></tr><tr><td><strong>مُنَافِقُونَ</strong><br><span class="muted">munāfiqūn</span></td><td>الذين يظهرون الإيمان ويخفون الكفر</td><td>Hypocrites ; personnes qui montrent la foi et cachent le rejet ou le doute.</td></tr><tr><td><strong>صُمٌّ بُكْمٌ عُمْيٌ</strong><br><span class="muted">ṣummun bukmun ʿumyun</span></td><td>لا ينتفعون بالسمع والنطق والبصر في الحق</td><td>Sourds, muets, aveugles ; image d’un blocage spirituel face à la vérité.</td></tr></table>
+        <h3>Synthèse</h3>
+        <p>Le texte montre qu’un refus répété peut conduire à l’endurcissement, tandis que l’hypocrisie religieuse détruit l’unité intérieure. La sincérité se vérifie dans la constance, surtout quand l’effort devient difficile.</p>
+      </article>
+      <aside class="reflection-box">
+        <div class="tag">Réflexion personnelle</div>
+        <h3>À méditer</h3>
+        <ul>
+          <li>Mon apparence religieuse correspond-elle réellement à mon intériorité ?</li>
+          <li>Quand on me corrige, ai-je tendance à me justifier au lieu d’écouter ?</li>
+          <li>Ma pratique dépend-elle du confort et du regard des autres ?</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="block">
+      <article class="section-card">
+        <span class="pill">Bloc 3 — Versets 21 à 39</span>
+        <h2>Appel universel à l’adoration, défi du Coran et récit d’Adam</h2>
+        <p class="muted"><strong>Traduction de sens :</strong> Le passage appelle toute l’humanité à adorer Allah pour Ses bienfaits, lance un défi à ceux qui doutent du Coran, puis raconte la création d’Adam, la chute d’Iblis, la faute et le repentir.</p>
+        <h3>Contexte et structure</h3>
+        <ul class="list"><li>Le discours quitte la simple description pour s’adresser directement aux hommes.</li><li>L’adoration est reliée à la création et aux bienfaits reçus.</li><li>Le récit d’Adam devient une leçon de dignité, de faiblesse et de repentir.</li></ul>
+        <h3>Lexique essentiel</h3>
+        <table class="lexique"><caption>Lexique enrichi pour mieux comprendre les mots arabes</caption><tr><th>Mot</th><th>Explication</th><th>Sens</th></tr><tr><td><strong>اعْبُدُوا</strong><br><span class="muted">uʿbudū</span></td><td>أفردوا الله بالطاعة والمحبة والذل</td><td>Adorez Allah seul ; vivre dans l’obéissance, l’amour, l’humilité et la reconnaissance envers Lui.</td></tr><tr><td><strong>رَبَّكُم</strong><br><span class="muted">rabbakum</span></td><td>السيد المربي المدبر</td><td>Votre Seigneur ; Celui qui crée, éduque, prend soin et dirige.</td></tr><tr><td><strong>خَلَقَكُمْ</strong><br><span class="muted">khalaqakum</span></td><td>أوجدكم من العدم</td><td>Il vous a créés ; vous a fait exister.</td></tr><tr><td><strong>أَنْدَادًا</strong><br><span class="muted">andādan</span></td><td>أمثالًا ونظراء</td><td>Des égaux associés à Allah ; partenaires qu’on placerait à tort à Son niveau.</td></tr><tr><td><strong>سُورَة</strong><br><span class="muted">sūra</span></td><td>قطعة من القرآن معلومة البداية والنهاية</td><td>Une sourate ; chapitre du Coran.</td></tr><tr><td><strong>شُهَدَاءَكُم</strong><br><span class="muted">shuhadā’akum</span></td><td>من تستعينون بهم وتشهدونهم</td><td>Vos témoins ou appuis ; ceux que vous invoquez pour soutenir votre prétention.</td></tr><tr><td><strong>خَلِيفَة</strong><br><span class="muted">khalīfa</span></td><td>من يقوم في الأرض بعمارتها وفق أمر الله</td><td>Vicaire sur terre ; être humain chargé d’agir sur terre selon la justice et la volonté d’Allah.</td></tr><tr><td><strong>الأَسْمَاء</strong><br><span class="muted">al-asmā’</span></td><td>الألفاظ الدالة على المسميات</td><td>Les noms ; savoir transmis à Adam pour montrer sa dignité et sa connaissance.</td></tr><tr><td><strong>اسْجُدُوا</strong><br><span class="muted">usjudū</span></td><td>اخضعوا سجود تكريم بأمر الله</td><td>Prosternez-vous ; ordre adressé aux anges en signe d’honneur pour Adam.</td></tr><tr><td><strong>إِبْلِيس</strong><br><span class="muted">Iblīs</span></td><td>اسم عدو الإنسان من الجن</td><td>Iblis ; l’ennemi de l’homme qui refuse l’ordre d’Allah.</td></tr><tr><td><strong>فَتَلَقَّى</strong><br><span class="muted">fatalaqqā</span></td><td>أخذ وقبل</td><td>Recevoir avec acceptation ; accueillir des paroles ou un enseignement avec ouverture.</td></tr><tr><td><strong>تَابَ</strong><br><span class="muted">tāba</span></td><td>رجع ورحم</td><td>Accueillir le repentir ; Allah revient vers Son serviteur par pardon et miséricorde.</td></tr></table>
+        <h3>Synthèse</h3>
+        <p>Le Coran présente l’adoration comme la réponse naturelle à la reconnaissance des bienfaits. Adam montre que la faiblesse humaine n’anéantit pas l’homme si elle est suivie d’un retour sincère vers Allah.</p>
+      </article>
+      <aside class="reflection-box">
+        <div class="tag">Réflexion personnelle</div>
+        <h3>À méditer</h3>
+        <ul>
+          <li>Est-ce que j’observe les bienfaits comme des signes qui appellent l’adoration ?</li>
+          <li>Quand je tombe dans une faute, est-ce que je choisis le repentir sincère ?</li>
+          <li>Est-ce que j’accueille les rappels comme des occasions de comprendre davantage ?</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="block">
+      <article class="section-card">
+        <span class="pill">Bloc 4 — Versets 40 à 66</span>
+        <h2>Alliance, bienfaits, miracles et manquements</h2>
+        <p class="muted"><strong>Traduction de sens :</strong> Allah rappelle aux Enfants d’Israël Ses bienfaits, leur alliance, le sauvetage de Pharaon, le pardon après le veau d’or, la manne, les cailles et l’eau du rocher, tout en exposant les désobéissances et l’ingratitude.</p>
+        <h3>Contexte et structure</h3>
+        <ul class="list"><li>La séquence sert de leçon historique et morale.</li><li>Les miracles ne suffisent pas si le cœur ne se réforme pas.</li><li>Le texte dénonce l’ingratitude et le contournement de la loi.</li></ul>
+        <h3>Lexique essentiel</h3>
+        <table class="lexique"><caption>Lexique enrichi pour mieux comprendre les mots arabes</caption><tr><th>Mot</th><th>Explication</th><th>Sens</th></tr><tr><td><strong>بِعَهْدِي</strong><br><span class="muted">bi-ʿahdī</span></td><td>بأمري ووصيتي وما التزمتم به</td><td>Mon alliance ; l’engagement établi par Allah et les devoirs qui en découlent.</td></tr><tr><td><strong>اذْكُرُوا</strong><br><span class="muted">udhkurū</span></td><td>تذكروا ولا تنسوا</td><td>Souvenez-vous ; rappel actif des bienfaits et des obligations.</td></tr><tr><td><strong>نِعْمَتِي</strong><br><span class="muted">niʿmatī</span></td><td>الإحسان والمنة</td><td>Mon bienfait ; faveur accordée par Allah.</td></tr><tr><td><strong>آمِنُوا</strong><br><span class="muted">āminū</span></td><td>صدقوا تصديقًا يورث العمل</td><td>Croyez ; adhérer avec le cœur d’une manière qui entraîne l’action.</td></tr><tr><td><strong>فَرَقْنَا</strong><br><span class="muted">faraqnā</span></td><td>شقَقْنا وفصلنا</td><td>Nous avons séparé ; rappel du miracle de l’ouverture de la mer.</td></tr><tr><td><strong>فِرْعَوْن</strong><br><span class="muted">firʿawn</span></td><td>الطاغية المعروف</td><td>Pharaon ; figure de tyrannie et d’oppression.</td></tr><tr><td><strong>الْمَنَّ وَالسَّلْوَى</strong><br><span class="muted">al-mann wa as-salwā</span></td><td>رزق أنزله الله عليهم</td><td>La manne et les cailles ; nourriture accordée comme bienfait au désert.</td></tr><tr><td><strong>الْعِجْلَ</strong><br><span class="muted">al-ʿijl</span></td><td>ولد البقرة الذي عبدوه من دون الله</td><td>Le veau adoré à tort ; symbole d’égarement après un grand bienfait.</td></tr><tr><td><strong>اضْرِبْ</strong><br><span class="muted">iḍrib</span></td><td>اضرب بعصاك</td><td>Frappe ; ordre donné à Moussa de frapper le rocher.</td></tr><tr><td><strong>الْحَجَر</strong><br><span class="muted">al-ḥajar</span></td><td>الصخر</td><td>La pierre, le rocher d’où l’eau jaillit.</td></tr></table>
+        <h3>Synthèse</h3>
+        <p>La science religieuse n’a de valeur que si elle conduit à l’humilité, à l’obéissance et à la gratitude. Les signes extérieurs ne remplacent jamais la réforme intérieure.</p>
+      </article>
+      <aside class="reflection-box">
+        <div class="tag">Réflexion personnelle</div>
+        <h3>À méditer</h3>
+        <ul>
+          <li>Est-ce que je me souviens des bienfaits reçus ou seulement de ce qui me manque ?</li>
+          <li>Quand je connais une vérité claire, est-ce que je l’applique vraiment ?</li>
+          <li>Ai-je parfois tendance à contourner les principes au lieu de m’y conformer ?</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="block">
+      <article class="section-card">
+        <span class="pill">Bloc 5 — Versets 67 à 74</span>
+        <h2>Le récit de la vache et l’endurcissement des cœurs</h2>
+        <p class="muted"><strong>Traduction de sens :</strong> Allah ordonne de sacrifier une vache. Au lieu d’obéir simplement, les questions se multiplient jusqu’à rendre la chose difficile, puis le passage se conclut par la dureté des cœurs.</p>
+        <h3>Contexte et structure</h3>
+        <ul class="list"><li>Le passage montre comment on peut compliquer un ordre simple.</li><li>La manifestation de la vérité ne produit pas toujours l’adoucissement du cœur.</li><li>La conclusion insiste sur l’insensibilité spirituelle.</li></ul>
+        <h3>Lexique essentiel</h3>
+        <table class="lexique"><caption>Lexique enrichi pour mieux comprendre les mots arabes</caption><tr><th>Mot</th><th>Explication</th><th>Sens</th></tr><tr><td><strong>بَقَرَة</strong><br><span class="muted">baqara</span></td><td>أنثى البقر</td><td>Une vache ; ici, l’animal demandé dans l’ordre divin du récit.</td></tr><tr><td><strong>هُزُوًا</strong><br><span class="muted">huzuwan</span></td><td>سخرية واستهزاء</td><td>Moquerie ; prendre un ordre au lieu sérieux sur le ton du rire.</td></tr><tr><td><strong>فَارِض</strong><br><span class="muted">fāriḍ</span></td><td>مسنّة كبيرة</td><td>Vieille, âgée ; terme utilisé pour préciser une caractéristique de la vache.</td></tr><tr><td><strong>بِكْر</strong><br><span class="muted">bikr</span></td><td>صغيرة السن</td><td>Jeune ; pas encore vieille.</td></tr><tr><td><strong>عَوَان</strong><br><span class="muted">ʿawān</span></td><td>بين الصغيرة والكبيرة</td><td>D’âge moyen ; entre jeune et vieille.</td></tr><tr><td><strong>صَفْرَاء</strong><br><span class="muted">ṣafrā’</span></td><td>لونها أصفر</td><td>Jaune ; couleur de la vache mentionnée.</td></tr><tr><td><strong>فَاقِع</strong><br><span class="muted">fāqiʿ</span></td><td>شديد الصفرة</td><td>Très vif, éclatant ; intensité de la couleur.</td></tr><tr><td><strong>قَسَتْ</strong><br><span class="muted">qasat</span></td><td>اشتدّت وصلبت</td><td>S’est endurcie ; se dit d’un cœur devenu dur, peu sensible au rappel.</td></tr><tr><td><strong>الْقُلُوب</strong><br><span class="muted">al-qulūb</span></td><td>موضع الإيمان والشعور</td><td>Les cœurs ; centre intérieur de la foi et de la sensibilité.</td></tr></table>
+        <h3>Synthèse</h3>
+        <p>Le récit avertit contre la complication inutile et contre la perte de sens. Un cœur vivant réagit encore aux rappels, aux signes et à la vérité.</p>
+      </article>
+      <aside class="reflection-box">
+        <div class="tag">Réflexion personnelle</div>
+        <h3>À méditer</h3>
+        <ul>
+          <li>Quand l’ordre d’Allah est clair, est-ce que je cherche à obéir simplement ?</li>
+          <li>Mon cœur réagit-il encore au Coran et aux rappels ?</li>
+          <li>Est-ce que je garde confiance dans la manifestation de la vérité ?</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>Ce que le Hizbe 1 révèle</h2>
+        <p>Au-delà du découpage verset par verset, ce passage dévoile aussi des enseignements transversaux sur la foi, les cœurs, la mémoire spirituelle et la manière de répondre à la guidée.</p>
+      </div>
+    </div>
+    <div class="insight-grid">
+      <article class="insight-card">
+        <h3>Une pédagogie des cœurs</h3>
+        <p>Le texte ne donne pas seulement des ordres : il montre plusieurs états intérieurs, du cœur réceptif au cœur endurci, en passant par le cœur instable. Cela aide à lire le Hizbe 1 comme une cartographie spirituelle de la réception de la vérité.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Savoir et transformation</h3>
+        <p>Le passage insiste indirectement sur un point décisif : connaître ne suffit pas. La vraie science devient utile lorsqu’elle mène à l’obéissance, à l’humilité, à la gratitude et au repentir.</p>
+      </article>
+      <article class="insight-card">
+        <h3>La guidée suppose une réponse</h3>
+        <p>Le Coran est présenté comme guidée, mais cette guidée n’agit pas mécaniquement. Elle produit ses effets chez celui qui écoute, croit, agit et accepte de se laisser réformer.</p>
+      </article>
+      <article class="insight-card">
+        <h3>La sincérité comme ligne de partage</h3>
+        <p>La différence entre foi réelle et hypocrisie ne tient pas seulement aux mots prononcés, mais à la cohérence entre l’intérieur et l’extérieur. Le Hizbe 1 invite donc à une vérification de soi constante.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Le rappel des bienfaits</h3>
+        <p>Les récits adressés aux Enfants d’Israël montrent que l’oubli des bienfaits entraîne souvent l’ingratitude et la désobéissance. À l’inverse, se souvenir des faveurs reçues fortifie la fidélité et l’obéissance.</p>
+      </article>
+      <article class="insight-card">
+        <h3>La simplicité dans l’obéissance</h3>
+        <p>Le récit de la vache révèle qu’un ordre simple peut devenir lourd lorsqu’on multiplie les complications. Le texte éduque ainsi à une obéissance simple, claire et sans détours inutiles.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>Portraits spirituels</h2>
+        <p>Le Hizbe 1 peut aussi être lu comme une série de portraits qui servent de miroirs pour l’étude, l’accompagnement et l’autoévaluation.</p>
+      </div>
+    </div>
+    <div class="insight-grid">
+      <article class="insight-card">
+        <h3>Le croyant réceptif</h3>
+        <p>Il croit à l’invisible, établit la prière, donne de ses biens et garde la certitude de l’au-delà. Sa relation au Coran n’est pas décorative : elle organise sa vie.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Le cœur scellé</h3>
+        <p>Ce portrait montre le résultat d’un refus prolongé. Le danger n’est pas seulement de ne pas comprendre, mais de s’habituer au rejet jusqu’à perdre la sensibilité au rappel.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Le profil hypocrite</h3>
+        <p>Il avance par ambiguïté, cherche la protection symbolique de la foi sans s’y abandonner réellement, et reste instable dès que l’effort devient exigeant.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Adam, le modèle du retour</h3>
+        <p>Le récit d’Adam rappelle qu’une chute n’est pas la fin si elle conduit à reconnaître sa faute, recevoir les paroles du repentir et revenir sincèrement vers Allah.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Le peuple ingrat</h3>
+        <p>Les bienfaits répétés ne garantissent pas la fidélité. Sans mémoire spirituelle, même l’évidence des signes peut être banalisée puis oubliée.</p>
+      </article>
+      <article class="insight-card">
+        <h3>Le cœur durci</h3>
+        <p>La fin du passage avertit contre l’endurcissement intérieur. Un cœur vivant se laisse toucher ; un cœur dur finit par ne plus réagir aux rappels ni aux preuves.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p><strong>Précision.</strong> Ce travail ne contredit pas les travaux des oulama et des savants ; il s’agit d’une vision pédagogique issue du vécu et de l’expérience personnelle.</p>
+  </div>
+</footer>
+
+<script>
+(function(){const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',d);if(t){t.textContent=d==='dark'?'Mode clair':'Mode sombre';t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);t.textContent=d==='dark'?'Mode clair':'Mode sombre';});}})();
+</script>
+</body>
+</html>
